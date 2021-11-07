@@ -1,0 +1,12 @@
+Ingredients:
+  TopBread:
+    type: sesame
+    color: yellow
+  Mayonnaise:
+    type: default
+    color: red
+  Cheese:
+    type: cheddar
+  BottomBread:
+    type: plain
+    color: red

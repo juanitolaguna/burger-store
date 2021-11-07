@@ -1,0 +1,10 @@
+Ingredients:
+  NonExistentIngredient:
+    type: sesame
+    color: yellow
+  Cheese:
+    type: cheddar
+    color: red
+  BottomBread:
+    type: plain
+    color: yellow

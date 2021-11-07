@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Ingredient;
 
 use App\Color;
+use App\Exception\UnsupportedColorException;
 use App\Exception\UnsupportedIngredientTypeException;
 
 class BottomBread implements IngredientInterface
@@ -14,6 +15,7 @@ class BottomBread implements IngredientInterface
     private string $color;
 
     /**
+     * @throws UnsupportedColorException
      * @throws UnsupportedIngredientTypeException
      */
     public function __construct(string $type, string $color = 'default')

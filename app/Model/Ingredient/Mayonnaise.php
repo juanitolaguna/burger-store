@@ -18,7 +18,7 @@ class Mayonnaise implements IngredientInterface
      * @throws UnsupportedIngredientTypeException
      * @throws UnsupportedColorException
      */
-    public function __construct(string $type, string $color = 'default')
+    public function __construct(string $type = 'default', string $color = 'default')
     {
         $this->validate($type);
         $this->type = $type;

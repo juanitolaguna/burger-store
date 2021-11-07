@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Exception\UnsupportedBurgerTypeException;
 use App\Model\Ingredient\BottomBread;
 use App\Model\Ingredient\Cheese;
 use App\Model\Ingredient\Mayonnaise;
@@ -15,8 +14,6 @@ use Symfony\Component\Yaml\Yaml;
 
 class DefaultBurgerFactory implements BurgerFactoryInterface
 {
-
-
     public function createRecipeItem(string $type): RecipeItemInterface
     {
 

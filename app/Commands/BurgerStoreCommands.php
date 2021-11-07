@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Commands;
 
-use App\Exception\UnsupportedIngredientTypeException;
+use App\Exception\UnsupportedBurgerTypeException;
 use App\Factory\BurgerFactoryInterface;
 use App\Recipe\RecipeLoader;
+use App\Utils;
 
 class BurgerStoreCommands
 {
@@ -30,20 +33,41 @@ class BurgerStoreCommands
 
 
     /**
-     * @throws UnsupportedIngredientTypeException
+     * @throws UnsupportedBurgerTypeException
      */
-    public static function exec(): void
+    public function exec(array $argv): void
     {
-        echo "test\n";
-        throw new UnsupportedIngredientTypeException(__CLASS__, 'test');
+        if ($argv[1] === "burger:list") {
+            $this->getBurgerList();
+            return;
+        }
+
+        $args = explode(":", $argv[1]);
+
+        if ($args[0] == "burger" && $args[1] == "recipe" && isset($args[2])) {
+            echo $this->getBurger($args[2]);
+        } else {
+            echo sprintf("Command: [%s] - does not exsist\n", $argv[1]);
+        }
     }
 
     /**
-     * @throws \App\Exception\UnsupportedBurgerTypeException
+     * @throws UnsupportedBurgerTypeException
      */
-    public function getBurger(string $type): string
+    private function getBurger(string $type): string
     {
         $burger = $this->burgerFactory->createRecipeItem($type);
         return $this->recipe->getRecipe($burger);
+    }
+
+    private function getBurgerList()
+    {
+        $fileList = glob(Utils::projectRoot() . "/data/*");
+
+        foreach ($fileList as $filename) {
+            if (is_file($filename)) {
+                echo basename($filename, ".yml"), "\n";
+            }
+        }
     }
 }
